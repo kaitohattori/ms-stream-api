@@ -22,6 +22,7 @@ func NewStreamController() *StreamController {
 // @Description return M3u8 file
 // @Tags Stream
 // @Produce application/x-mpegURL
+// @Param id path int true "Video ID"
 // @Success 200 {object} string ""
 // @Failure 400 {object} util.HTTPError
 // @Failure 404 {object} util.HTTPError
@@ -49,6 +50,8 @@ func (c *StreamController) GetM3u8File(ctx *gin.Context) {
 // @Description return hls file
 // @Tags Stream
 // @Produce video/MP2T
+// @Param id path int true "Video ID"
+// @Param segName path string true "segName"
 // @Success 200 {object} string ""
 // @Failure 400 {object} util.HTTPError
 // @Failure 404 {object} util.HTTPError

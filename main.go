@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"ms-stream-api/app/controller"
+	"ms-stream-api/app/util"
 	"ms-stream-api/config"
 	_ "ms-stream-api/docs"
 	"net/http"
@@ -30,6 +31,7 @@ import (
 // @BasePath /api/v1
 
 func main() {
+	util.LoggingSettings(config.Config.LogFile)
 	StartServer()
 }
 
