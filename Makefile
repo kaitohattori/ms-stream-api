@@ -12,7 +12,7 @@ docker-build: ## Build on docker
 	docker build -t $(NAME) .
 
 docker-run: ## Run on docker
-	docker run $(NAME)
+	docker run --name $(NAME) --rm -p 8081:8081 $(NAME)
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
