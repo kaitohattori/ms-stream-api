@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"ms-stream-api/app/controller"
 	"ms-stream-api/app/util"
@@ -60,6 +59,6 @@ func StartServer() {
 			auth.GET(":id/stream/:segName", StreamController.GetHlsFile)
 		}
 	}
-	engine.GET(fmt.Sprintf("%s/*any", config.Config.ApiDocsPath), ginSwagger.WrapHandler(swaggerFiles.Handler))
+	engine.GET("/docs/api/v1/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	engine.Run(":8081")
 }

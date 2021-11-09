@@ -2,28 +2,24 @@ package util
 
 import (
 	"fmt"
+	"ms-stream-api/config"
 )
 
 var FileUtil FileUtilFuncs
 
 type FileUtilFuncs struct {
-	MediaRoot    string
-	M3u8FileName string
 }
 
 func init() {
-	FileUtil = FileUtilFuncs{
-		MediaRoot:    "assets/media",
-		M3u8FileName: "video.m3u8",
-	}
+	FileUtil = FileUtilFuncs{}
 }
 
-func (u FileUtilFuncs) M3u8FilePath(videoId int) string {
-	basePath := fmt.Sprintf("%s/%d", u.MediaRoot, videoId)
-	return fmt.Sprintf("%s/hls/%s", basePath, u.M3u8FileName)
+func FileUtilM3u8FilePath(videoId int) string {
+	basePath := fmt.Sprintf("%s/%d", config.Config.AssetsDirPath, videoId)
+	return fmt.Sprintf("%s/hls/%s", basePath, config.Config.AssetsM3u8FileName)
 }
 
-func (u FileUtilFuncs) HlsFilePath(videoId int, segName string) string {
-	basePath := fmt.Sprintf("%s/%d", u.MediaRoot, videoId)
+func FileUtilHlsFilePath(videoId int, segName string) string {
+	basePath := fmt.Sprintf("%s/%d", config.Config.AssetsDirPath, videoId)
 	return fmt.Sprintf("%s/hls/%s", basePath, segName)
 }

@@ -8,6 +8,10 @@ $ export GO111MODULE=on
 
 # mod.modとgo.sumの差でエラーが出たら以下のコマンドを実行
 $ go mod tidy
+
+# ログフォルダを生成
+$ cd <このアプリのディレクトリのパス>
+$ mkdir logs
 ```
 
 ## 動作

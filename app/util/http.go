@@ -16,11 +16,3 @@ type HTTPError struct {
 	Code    int    `json:"code" example:"400"`
 	Message string `json:"message" example:"status bad request"`
 }
-
-type HTTPMessageResponse struct {
-	Message string `json:"message" example:"success"`
-}
-
-type HTTPValueResponse struct {
-	Value interface{} `json:"value"`
-}
