@@ -8,27 +8,27 @@ import (
 )
 
 type M3u8File struct {
-	Closer io.ReadCloser
+	File io.ReadCloser
 }
 
-func NewM3u8File(f *os.File) M3u8File {
+func NewM3u8File(file *os.File) M3u8File {
 	return M3u8File{
-		Closer: f,
+		File: file,
 	}
 }
 
 func M3u8FileGet(videoId int) (*M3u8File, error) {
 	mediaFilePath := util.FileUtilM3u8FilePath(videoId)
-	f, err := os.Open(mediaFilePath)
+	file, err := os.Open(mediaFilePath)
 	if err != nil {
 		return nil, err
 	}
-	data := NewM3u8File(f)
+	data := NewM3u8File(file)
 	return &data, nil
 }
 
 func (t M3u8File) Bytes() []byte {
 	buffer := new(bytes.Buffer)
-	io.Copy(buffer, t.Closer)
+	io.Copy(buffer, t.File)
 	return buffer.Bytes()
 }

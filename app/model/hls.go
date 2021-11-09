@@ -8,27 +8,27 @@ import (
 )
 
 type HlsFile struct {
-	Closer io.ReadCloser
+	File io.ReadCloser
 }
 
-func NewHlsFile(f *os.File) HlsFile {
+func NewHlsFile(file *os.File) HlsFile {
 	return HlsFile{
-		Closer: f,
+		File: file,
 	}
 }
 
 func HlsFileGet(videoId int, segName string) (*HlsFile, error) {
 	mediaFilePath := util.FileUtilHlsFilePath(videoId, segName)
-	f, err := os.Open(mediaFilePath)
+	file, err := os.Open(mediaFilePath)
 	if err != nil {
 		return nil, err
 	}
-	data := NewHlsFile(f)
+	data := NewHlsFile(file)
 	return &data, nil
 }
 
 func (t HlsFile) Bytes() []byte {
 	buffer := new(bytes.Buffer)
-	io.Copy(buffer, t.Closer)
+	io.Copy(buffer, t.File)
 	return buffer.Bytes()
 }
