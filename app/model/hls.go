@@ -18,7 +18,7 @@ func NewHlsFile(f *os.File) HlsFile {
 }
 
 func HlsFileGet(videoId int, segName string) (*HlsFile, error) {
-	mediaFilePath := util.FileUtil.HlsFilePath(videoId, segName)
+	mediaFilePath := util.FileUtilHlsFilePath(videoId, segName)
 	f, err := os.Open(mediaFilePath)
 	if err != nil {
 		return nil, err

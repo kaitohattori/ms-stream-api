@@ -18,7 +18,7 @@ func NewM3u8File(f *os.File) M3u8File {
 }
 
 func M3u8FileGet(videoId int) (*M3u8File, error) {
-	mediaFilePath := util.FileUtil.M3u8FilePath(videoId)
+	mediaFilePath := util.FileUtilM3u8FilePath(videoId)
 	f, err := os.Open(mediaFilePath)
 	if err != nil {
 		return nil, err
