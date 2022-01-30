@@ -27,7 +27,7 @@ func NewStreamController() *StreamController {
 // @Failure 400 {object} util.HTTPError
 // @Failure 404 {object} util.HTTPError
 // @Failure 500 {object} util.HTTPError
-// @Router /video/{id}/stream [get]
+// @Router /videos/{id}/stream [get]
 func (c *StreamController) GetM3u8File(ctx *gin.Context) {
 	videoIdStr := ctx.Param("id")
 	videoId, err := strconv.Atoi(videoIdStr)
@@ -56,7 +56,7 @@ func (c *StreamController) GetM3u8File(ctx *gin.Context) {
 // @Failure 400 {object} util.HTTPError
 // @Failure 404 {object} util.HTTPError
 // @Failure 500 {object} util.HTTPError
-// @Router /video/{id}/stream/{segName} [get]
+// @Router /videos/{id}/{segName} [get]
 func (c *StreamController) GetHlsFile(ctx *gin.Context) {
 	segName := ctx.Param("segName")
 	videoIdStr := ctx.Param("id")

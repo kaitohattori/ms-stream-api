@@ -53,10 +53,10 @@ func StartServer() {
 	// Router
 	v1 := engine.Group("/api/v1")
 	{
-		auth := v1.Group("/video")
+		auth := v1.Group("/videos")
 		{
 			auth.GET(":id/stream", StreamController.GetM3u8File)
-			auth.GET(":id/stream/:segName", StreamController.GetHlsFile)
+			auth.GET(":id/:segName", StreamController.GetHlsFile)
 		}
 	}
 	engine.GET("/docs/api/v1/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
