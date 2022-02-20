@@ -13,6 +13,8 @@ $ make init
 $ go mod tidy
 ```
 
+`config/config.ini` を配置してください。
+
 ## 動作
 
 ```
