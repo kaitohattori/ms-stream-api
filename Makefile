@@ -2,7 +2,7 @@ APP_NAME = ms-stream-api
 EXTERNAL_APPS = postgresql ms-api
 
 init: ## Initialize app
-	go install
+	go mod download
 	mkdir -p ./logs/
 
 run: ## Run on local
