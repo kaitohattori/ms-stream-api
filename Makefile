@@ -1,9 +1,9 @@
 APP_NAME = ms-stream-api
-DOCKER_STORAGE_PATH = ~/ms-tv
+EXTERNAL_APPS = postgresql ms-api
 
-build: ## Build on local
-	swag init
-	go build main.go
+init: ## Initialize app
+	go install
+	mkdir -p ./logs/
 
 run: ## Run on local
 	swag init
@@ -15,10 +15,19 @@ docker-build: ## Build on docker
 docker-run: ## Run on docker
 	docker run --rm \
 		-p 8081:8081 \
-		-v $(DOCKER_STORAGE_PATH)/assets:/go/src/$(APP_NAME)/assets \
-		-v $(DOCKER_STORAGE_PATH)/logs:/go/src/$(APP_NAME)/logs \
+		-v ./assets:/go/src/$(APP_NAME)/assets \
+		-v ./logs:/go/src/$(APP_NAME)/logs \
 		--name $(APP_NAME) \
 		$(APP_NAME):latest
+
+external-init: ## Initialize external apps
+	rm -rf ./external-apps/logs
+
+external-run: ## Run external apps
+	docker-compose up -d $(EXTERNAL_APPS)
+
+external-end: ## End external apps
+	docker-compose down
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

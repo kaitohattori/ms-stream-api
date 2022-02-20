@@ -6,12 +6,11 @@
 # GO111MODULEをオンにする
 $ export GO111MODULE=on
 
+# App初期設定
+$ make init
+
 # mod.modとgo.sumの差でエラーが出たら以下のコマンドを実行
 $ go mod tidy
-
-# ログフォルダを生成
-$ cd <このアプリのディレクトリのパス>
-$ mkdir logs
 ```
 
 ## 動作
@@ -21,14 +20,6 @@ $ mkdir logs
 $ swag init
 
 # 実行
-$ go run main.go
-```
-
-```
-# ビルド
-$ make build
-
-# 実行
 $ make run
 
 # Dockerビルド
@@ -36,6 +27,15 @@ $ make docker-build
 
 # Docker実行
 $ make docker-run
+
+# external appsを立ち上げる
+$ make external-run
+
+# external appsを終了する
+$ make external-end
+
+# ヘルプ
+$ make help
 ```
 
 ## ドキュメント
