@@ -43,3 +43,38 @@ $ make help
 ## ドキュメント
 
 http://localhost:8081/docs/api/v1/index.html#/
+
+## Deploy
+
+Deploy to minikube
+
+```
+# Start minikube
+$ minikube start
+
+# Use local image
+$ eval $(minikube docker-env)
+
+# Build docker image
+$ docker build -t ms-stream-api .
+
+# Deploy
+$ kubectl apply -f deploy/deployment.yaml
+$ kubectl apply -f deploy/service.yaml
+
+# Get all status
+$ kubectl get all
+
+# Access to deployed app (Click the displayed url)
+$ minikube service ms-stream-api --url
+```
+
+minikube common commands
+
+```
+$ minikube start
+$ minikube status
+$ minikube dashboard
+$ minikube tunnel
+$ minikube stop
+```
