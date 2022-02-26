@@ -8,13 +8,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ms-stream-api
+      app: ms-stream-api-gateway
   template:
     metadata:
       labels:
-        app: ms-stream-api
+        app: ms-stream-api-gateway
     spec:
       containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              name: nginx-conf
         - name: ms-stream-api
           image: ms-stream-api:latest
           imagePullPolicy: IfNotPresent
@@ -26,6 +33,9 @@ spec:
             - mountPath: /go/src/ms-stream-api/logs
               name: logs
       volumes:
+        - name: nginx-conf
+          configMap:
+            name: ms-stream-api-nginx-conf
         - name: video-assets
           persistentVolumeClaim:
             claimName: video-assets-pv-claim
