@@ -1,46 +1,46 @@
 # MS Stream API
 
-## 準備
+## Prerequisites
 
 ```
-# GO111MODULEをオンにする
+# Enable GO111MODULE
 $ export GO111MODULE=on
 
-# App初期設定
+# Initialize app
 $ make init
 
-# mod.modとgo.sumの差でエラーが出たら以下のコマンドを実行
+# Run this command if there is differeces betreen mod.mod and go.sum
 $ go mod tidy
 ```
 
-`config/config.ini` を配置してください。
+Set config file at config/config.ini.
 
-## 動作
+## How to develop
 
 ```
-# docsを更新
+# Update docs
 $ swag init
 
-# 実行
+# Run on local
 $ make run
 
-# Dockerビルド
+# Build on docker
 $ make docker-build
 
-# Docker実行
+# Run on docker
 $ make docker-run
 
-# external appsを立ち上げる
+# Run external apps
 $ make external-run
 
-# external appsを終了する
+# End external apps
 $ make external-end
 
-# ヘルプ
+# Help
 $ make help
 ```
 
-## ドキュメント
+## API Docs
 
 http://localhost:8081/docs/api/v1/index.html#/
 
