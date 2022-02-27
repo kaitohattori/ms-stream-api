@@ -20,8 +20,6 @@ services:
         container_name: ms-api
         ports:
             - 8080:8080
-        environment:
-            - APP_ENV=development
         extra_hosts:
             - localhost:host-gateway
         depends_on:
@@ -37,8 +35,6 @@ services:
         container_name: ms-stream-api
         ports:
             - 8081:8081
-        environment:
-            - APP_ENV=development
         extra_hosts:
             - localhost:host-gateway
         volumes:
@@ -52,8 +48,6 @@ services:
         container_name: ms-recommendation-api
         ports:
             - 8082:8082
-        environment:
-            - APP_ENV=development
         extra_hosts:
             - localhost:host-gateway
         volumes:
@@ -68,8 +62,6 @@ services:
         container_name: ms-website
         ports:
             - 3000:3000
-        environment:
-            - NODE_ENV=development
         extra_hosts:
             - localhost:host-gateway
         depends_on:

@@ -27,6 +27,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
+          env:
+            - name: APP_ENV
+              value: production
           volumeMounts:
             - mountPath: /go/src/ms-stream-api/assets
               name: video-assets
