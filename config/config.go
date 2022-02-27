@@ -16,11 +16,19 @@ type ConfigList struct {
 	AssetsM3u8FileName string
 }
 
+func getEnv() string {
+	return os.Getenv("APP_ENV")
+}
+
 // Config is variable of ConfigList
 var Config ConfigList
 
 func init() {
-	cfg, err := ini.Load("config/config.ini")
+	configFilePath := "config/config-production.ini"
+	if getEnv() == "development" {
+		configFilePath = "config/config-development.ini"
+	}
+	cfg, err := ini.Load(configFilePath)
 	if err != nil {
 		log.Fatalln("Failed to read file: ", err)
 		os.Exit(1)

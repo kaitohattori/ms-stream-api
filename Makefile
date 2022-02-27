@@ -15,6 +15,7 @@ docker-build: ## Build on docker
 
 docker-run: ## Run on docker
 	docker run --rm \
+		--add-host=localhost:host-gateway \
 		-p 8081:8081 \
 		-v assets:/go/src/$(APP_NAME)/assets \
 		-v logs:/go/src/$(APP_NAME)/logs \
