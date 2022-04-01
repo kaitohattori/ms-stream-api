@@ -53,9 +53,9 @@ func StartServer() {
 	// Router
 	v1 := engine.Group("/api/v1")
 	{
-		auth := v1.Group("/videos")
+		auth := v1.Group("/stream")
 		{
-			auth.GET(":id/stream", StreamController.GetM3u8File)
+			auth.GET(":id/playlist", StreamController.GetM3u8File)
 			auth.GET(":id/:segName", StreamController.GetHlsFile)
 		}
 	}
